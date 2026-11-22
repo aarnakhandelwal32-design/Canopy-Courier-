@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Canopy Courier: fly a delivery drone over an overgrown valley, pick up supply crates and drop them on the right camp's landing pad." />
+    <meta name="theme-color" content="#1d2a18" />
+    <title>Canopy Courier — a drone pick &amp; drop game</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><g stroke='%23e0b24a' stroke-width='4' fill='none'><circle cx='14' cy='14' r='10'/><circle cx='50' cy='14' r='10'/><circle cx='14' cy='50' r='10'/><circle cx='50' cy='50' r='10'/></g><rect x='20' y='22' width='24' height='20' rx='5' fill='%23f2a23a'/></svg>" />
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <main id="stage">
+      <canvas id="game" tabindex="0" aria-label="Canopy Courier game world"></canvas>
+      <button id="mute" class="hud-btn" type="button" aria-label="Toggle sound" aria-pressed="false">♪ SOUND ON</button>
+
+      <section id="start" class="overlay" aria-labelledby="title">
+        <div class="panel">
+          <p class="kicker">Drone K-04 · Overgrown Valley Relief Run</p>
+          <h1 id="title" class="title">Canopy <span>Courier</span></h1>
+          <p class="tagline">The cities went green. The camps still need supplies. You fly the crates.</p>
+
+          <ol class="loop" aria-label="How to play">
+            <li><b>1</b><span>Fly</span><small>to a supply crate</small></li>
+            <li class="pick"><b>2</b><span>Pick</span><small>hold Space to winch it up</small></li>
+            <li><b>3</b><span>Carry</span><small>dodge rusty scavengers</small></li>
+            <li class="drop"><b>4</b><span>Drop</span><small>release over its camp's pad</small></li>
+          </ol>
+
+          <div class="controls" aria-label="Controls">
+            <div class="ctl">
+              <div class="keys">
+                <kbd class="k-w">W</kbd><kbd class="k-a">A</kbd><kbd class="k-s">S</kbd><kbd class="k-d">D</kbd>
+              </div>
+              <p><b>Fly</b> · or arrow keys</p>
+            </div>
+            <div class="ctl">
+              <div class="keys"><kbd class="space">SPACE</kbd></div>
+              <p><b>Winch</b> · or hold mouse<br />hold = pick up · release = drop</p>
+            </div>
+            <div class="ctl rules">
+              <p>🎯 Deliver <b>12 crates</b> before the clock runs out.</p>
+              <p>⏱ Each delivery adds <b>+6s</b>, a bullseye <b>+3s</b> more.</p>
+              <p>🌊 Crates dropped in the river are lost.</p>
+              <p>🤖 Scavengers cost <b>−3s</b> and knock cargo loose.</p>
+            </div>
+          </div>
+
+          <button id="launch" class="cta" type="button">Start deliveries</button>
+          <p class="fine">Enter to start · P pause · M mute</p>
+        </div>
+      </section>
+
+      <section id="over" class="overlay hidden" aria-labelledby="over-title">
+        <div class="panel compact">
+          <p id="over-kicker" class="kicker">Shift complete</p>
+          <h2 id="over-title" class="title small">All camps <span>supplied!</span></h2>
+          <div id="stars" class="stars" aria-label="Rating"></div>
+          <p id="rank" class="rank">LEGENDARY COURIER</p>
+          <dl class="stats">
+            <div class="wide"><dt>Final score</dt><dd id="final-score" class="big">0</dd></div>
+            <div><dt>Delivered</dt><dd id="final-delivered">0</dd></div>
+            <div><dt>Bullseyes</dt><dd id="final-perfects">0</dd></div>
+            <div><dt>Lost in river</dt><dd id="final-lost">0</dd></div>
+            <div><dt>Rammed</dt><dd id="final-hits">0</dd></div>
+          </dl>
+          <p id="best" class="best">Personal best · 0</p>
+          <div class="row">
+            <button id="rematch" class="cta" type="button">Fly again</button>
+            <button id="menu" class="ghost" type="button">Main menu</button>
+          </div>
+          <p class="fine">Enter for an instant rematch</p>
+        </div>
+      </section>
+    </main>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
